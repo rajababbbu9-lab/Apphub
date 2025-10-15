@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Download</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: #2c3e50;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white;
+      margin-left: 16px;
+      text-decoration: none;
+    }
+
+    .navbar .logo {
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    /* Main Page */
+    .app-list {
+      margin-top: 80px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding-bottom: 40px;
+    }
+
+    .app-card {
+      background-color: white;
+      border-radius: 10px;
+      width: 200px;
+      text-align: center;
+      padding: 16px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+
+    .app-card:hover {
+      transform: scale(1.05);
+    }
+
+    .app-card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    /* App Detail Page */
+    .app-detail {
+      margin-top: 100px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .app-detail img {
+      width: 150px;
+      border-radius: 10px;
+    }
+
+    #download-btn, #final-download {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    #countdown-section {
+      margin-top: 20px;
+    }
+
+    .ad-space {
+      background-color: #e0e0e0;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      border-radius: 8px;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+      .app-list {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .app-card {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Fixed Navbar -->
+  <header class="navbar">
+    <div class="logo">App Download</div>
+    <nav>
+      <a href="#" onclick="showHome()">Apps</a>
+      <a href="#">Category</a>
+      <a href="#">Information</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <div class="app-list" id="app-list">
+      <div class="app-card" onclick="openApp('app1')">
+        <img src="https://via.placeholder.com/150" alt="App 1" />
+        <h3>Chat Now</h3>
+        <p>Fast Messaging App</p>
+      </div>
+
+      <div class="app-card" onclick="openApp('app2')">
+        <img src="https://via.placeholder.com/150" alt="App 2" />
+        <h3>Photo Edit Pro</h3>
+        <p>Powerful Photo Editor</p>
+      </div>
+
+      <div class="app-card" onclick="openApp('app3')">
+        <img src="https://i.postimg.cc/fb7D074w/music.jpg" alt="Music App" />
+        <h3>Music Player</h3>
+        <p>Enjoy your favorite songs</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // App data
+    const apps = {
+      app1: {
+        name: "Chat Now",
+        developer: "FastSoft Inc.",
+        size: "25 MB",
+        image: "https://via.placeholder.com/150"
+      },
+      app2: {
+        name: "Photo Edit Pro",
+        developer: "PicMaster Studio",
+        size: "48 MB",
+        image: "https://via.placeholder.com/150"
+      },
+      app3: {
+        name: "Music Player",
+        developer: "Soundify",
+        size: "32 MB",
+        image: "https://i.postimg.cc/fb7D074w/music.jpg"
+      }
+    };
+
+    // Open app details
+    function openApp(appId) {
+      const app = apps[appId];
+      if (!app) return;
+
+      document.getElementById("main-content").innerHTML = `
+        <div class="app-detail">
+          <img src="${app.image}" alt="${app.name}" />
+          <h2>${app.name}</h2>
+          <p>Developer: ${app.developer}</p>
+          <p>Size: ${app.size}</p>
+          <button id="download-btn" onclick="startCountdown()">Download</button>
+
+          <div id="countdown-section" style="display:none;">
+            <div class="ad-space">
+              <p>Ad Space - Paste your ad code here</p>
+            </div>
+            <p id="timer">Download starts in <span id="count">10</span> seconds...</p>
+            <button id="final-download" style="display:none;" onclick="downloadFile()">Click to Download</button>
+          </div>
+        </div>
+      `;
+    }
+
+    // Go back to home (app list)
+    function showHome() {
+      document.getElementById("main-content").innerHTML = `
+        <div class="app-list" id="app-list">
+          <div class="app-card" onclick="openApp('app1')">
+            <img src="https://via.placeholder.com/150" alt="App 1" />
+            <h3>Chat Now</h3>
+            <p>Fast Messaging App</p>
+          </div>
+          <div class="app-card" onclick="openApp('app2')">
+            <img src="https://via.placeholder.com/150" alt="App 2" />
+            <h3>Photo Edit Pro</h3>
+            <p>Powerful Photo Editor</p>
+          </div>
+          <div class="app-card" onclick="openApp('app3')">
+            <img src="https://i.postimg.cc/fb7D074w/music.jpg" alt="Music App" />
+            <h3>Music Player</h3>
+            <p>Enjoy your favorite songs</p>
+          </div>
+        </div>
+      `;
+    }
+
+    // Countdown logic
+    function startCountdown() {
+      document.getElementById("download-btn").style.display = "none";
+      document.getElementById("countdown-section").style.display = "block";
+
+      let time = 10;
+      const countSpan = document.getElementById("count");
+
+      const timer = setInterval(() => {
+        time--;
+        countSpan.textContent = time;
+
+        if (time <= 0) {
+          clearInterval(timer);
+          document.getElementById("timer").style.display = "none";
+          document.getElementById("final-download").style.display = "inline-block";
+        }
+      }, 1000);
+    }
+
+    // Simulate file download
+    function downloadFile() {
+      alert("Download started!");
+      window.location.href = "https://example.com/yourapp.apk"; // replace with your file link
+    }
+  </script>
+</body>
+</html>
