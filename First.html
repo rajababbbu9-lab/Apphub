@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppHub - App Download</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f9;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #1a2a3a;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Content */
+    .content {
+      margin-top: 70px;
+      padding: 20px;
+    }
+
+    .app-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .app-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .app-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .app-card h2 {
+      margin: 5px 0;
+      font-size: 20px;
+      color: #222;
+    }
+
+    .app-card p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Details page */
+    .details {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .details img {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #1a2a3a;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #273c50;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>AppHub</h1>
+    <nav>
+      <a href="#">Apps</a>
+      <a href="#">Category</a>
+      <a href="#">Information</a>
+    </nav>
+  </div>
+
+  <!-- App List -->
+  <div class="content" id="appList">
+    <div class="app-card" onclick="showDetails('Chat Now', 'Fast Messaging App', 'https://via.placeholder.com/100')">
+      <img src="https://via.placeholder.com/100" alt="Chat Now">
+      <h2>Chat Now</h2>
+      <p>Fast Messaging App</p>
+    </div>
+
+    <div class="app-card" onclick="showDetails('Photo Edit Pro', 'Powerful Photo Editor', 'https://via.placeholder.com/100')">
+      <img src="https://via.placeholder.com/100" alt="Photo Edit Pro">
+      <h2>Photo Edit Pro</h2>
+      <p>Powerful Photo Editor</p>
+    </div>
+
+    <div class="app-card" onclick="showDetails('Music Player', 'Enjoy your favorite songs', 'https://i.postimg.cc/fb7D074w/music.jpg')">
+      <img src="https://i.postimg.cc/fb7D074w/music.jpg" alt="Music Player">
+      <h2>Music Player</h2>
+      <p>Enjoy your favorite songs</p>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function showDetails(name, description, image) {
+      const main = document.body;
+      main.innerHTML = `
+        <div class="navbar">
+          <h1>${name}</h1>
+        </div>
+        <div class="details">
+          <img src="${image}" alt="${name}">
+          <h2>${name}</h2>
+          <p>${description}</p>
+          <button class="btn" onclick="startDownload()">Download</button><br>
+          <button class="btn" onclick="location.reload()">Back</button>
+        </div>
+      `;
+    }
+
+    function startDownload() {
+      const btn = document.querySelector(".btn");
+      let time = 10;
+      btn.disabled = true;
+      btn.textContent = `Preparing download... ${time}s`;
+
+      const timer = setInterval(() => {
+        time--;
+        btn.textContent = `Preparing download... ${time}s`;
+        if (time === 0) {
+          clearInterval(timer);
+          btn.textContent = "Click to Download";
+          btn.disabled = false;
+          btn.onclick = () => {
+            window.open("https://example.com/download", "_blank");
+          };
+        }
+      }, 1000);
+    }
+  </script>
+
+</body>
+</html>
