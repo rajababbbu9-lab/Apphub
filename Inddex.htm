@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Download</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #1a2a3a;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .navbar h1 {
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .navbar nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+
+    .navbar nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Main Content */
+    .content {
+      margin-top: 70px;
+      padding: 20px;
+    }
+
+    .app-card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .app-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .app-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .app-card h2 {
+      margin: 5px 0;
+      font-size: 20px;
+      color: #222;
+    }
+
+    .app-card p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h1>App Download</h1>
+    <nav>
+      <a href="#">Apps</a>
+      <a href="#">Category</a>
+      <a href="#">Information</a>
+    </nav>
+  </div>
+
+  <div class="content">
+    <div class="app-card" onclick="showDetails('Chat Now', 'Fast Messaging App', 'chat.jpg')">
+      <img src="https://via.placeholder.com/100" alt="App 1">
+      <h2>Chat Now</h2>
+      <p>Fast Messaging App</p>
+    </div>
+
+    <div class="app-card" onclick="showDetails('Photo Edit Pro', 'Powerful Photo Editor', 'edit.jpg')">
+      <img src="https://via.placeholder.com/100" alt="App 2">
+      <h2>Photo Edit Pro</h2>
+      <p>Powerful Photo Editor</p>
+    </div>
+
+    <div class="app-card" onclick="showDetails('Music Player', 'Enjoy your favorite songs', 'https://i.postimg.cc/fb7D074w/music.jpg')">
+      <img src="https://i.postimg.cc/fb7D074w/music.jpg" alt="Music App">
+      <h2>Music Player</h2>
+      <p>Enjoy your favorite songs</p>
+    </div>
+  </div>
+
+  <script>
+    function showDetails(name, description, image) {
+      // Create a details page
+      const html = `
+        <div style="padding:20px;text-align:center;">
+          <img src="${image}" style="width:150px;height:150px;border-radius:20px;">
+          <h2>${name}</h2>
+          <p>${description}</p>
+          <button onclick="goBack()" style="padding:10px 20px;background:#1a2a3a;color:white;border:none;border-radius:5px;">Back</button>
+        </div>
+      `;
+      document.body.innerHTML = html;
+    }
+
+    function goBack() {
+      location.reload();
+    }
+  </script>
+
+</body>
+</html>
