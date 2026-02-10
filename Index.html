@@ -1,0 +1,145 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe & Gaming Zone</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 2rem;
+            margin: 1rem;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            margin: 1rem;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+        }
+
+        input, button {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Cafe & Gaming Zone</h1>
+        <nav>
+            <a href="#cafe">Cafe</a>
+            <a href="#gaming">Gaming Zone</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="cafe">
+        <h2>Cafe Menu</h2>
+        <div class="menu">
+            <div class="item">
+                <h3>Espresso</h3>
+                <p>$3.50 - Rich and bold coffee.</p>
+            </div>
+            <div class="item">
+                <h3>Latte</h3>
+                <p>$4.00 - Creamy milk with espresso.</p>
+            </div>
+            <div class="item">
+                <h3>Cappuccino</h3>
+                <p>$4.50 - Frothy coffee with steamed milk.</p>
+            </div>
+            <div class="item">
+                <h3>Sandwich</h3>
+                <p>$7.00 - Fresh turkey and cheese on toasted bread.</p>
+            </div>
+            <!-- Add more items as needed -->
+        </div>
+    </section>
+
+    <section id="gaming">
+        <h2>Gaming Zone</h2>
+        <p>Enjoy PC games, VR experiences, and tournaments. Book a session below.</p>
+        <form id="booking-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required>
+            <label for="date">Date:</label>
+            <input type="date" id="date" required>
+            <label for="time">Time:</label>
+            <input type="time" id="time" required>
+            <button type="submit">Book Now</button>
+        </form>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Address: 123 Game Street, City, State</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Email: info@cafegaming.com</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Cafe & Gaming Zone. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('booking-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            alert(`Booking confirmed for ${name} on ${date} at ${time}. We'll contact you soon!`);
+            // In a real app, send this data to a server via fetch() or AJAX.
+        });
+    </script>
+</body>
+</html>
